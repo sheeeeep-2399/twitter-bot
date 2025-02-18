@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:  # 手動実行を可能にする
   schedule:
-    - cron: '55 15 * * *'  # JST 0:00（GitHubはUTCなので、JST -9時間 = 15:00）
+    - cron: '0 15 * * *'  # JST 0:00（GitHubはUTCなので、JST -9時間 = 15:00）
 
 jobs:
   tweet:
