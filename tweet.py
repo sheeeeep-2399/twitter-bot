@@ -48,13 +48,11 @@ random_tweets = [
     "おもしろいぞ月ノ美兎",
 ]
 
-tweet_content += "\n" + f"{date_str}"
-
 # 今日が特定の日なら固定ツイート、それ以外はランダム
 if month_day in special_tweets:
-    tweet_content = special_tweets[month_day]  # 特定の日のツイート
+    tweet_content = special_tweets[month_day] + "\n" + f"{date_str}" # 特定の日のツイート
 else:
-    tweet_content = random.choice(random_tweets)  # ランダムツイート
+    tweet_content = random.choice(random_tweets) + "\n" + f"{date_str}" # ランダムツイート
 
 # ツイートを投稿
 response = client.create_tweet(text=tweet_content)
