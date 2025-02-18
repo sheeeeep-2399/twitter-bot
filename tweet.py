@@ -23,8 +23,7 @@ client = tweepy.Client(
 # 現在時刻（JST）
 JST = pytz.timezone('Asia/Tokyo')
 now = datetime.now(JST)
-date_str = now.strftime("%Y-%m-%d")
-month_day = now.strftime("%m-%d")  # 月日だけ取得（例: "12-25"）
+date_str = now.strftime("%m月%d日").lstrip("0")  # 0埋めを削除
 
 # 特定の日付に固定のツイートをする辞書
 special_tweets = {
@@ -48,6 +47,8 @@ random_tweets = [
     "かわいいぞ月ノ美兎",
     "おもしろいぞ月ノ美兎",
 ]
+
+tweet_content += "\n" + f"{date_str}"
 
 # 今日が特定の日なら固定ツイート、それ以外はランダム
 if month_day in special_tweets:
