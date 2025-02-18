@@ -1,13 +1,12 @@
 name: Tweet at Midnight JST
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:  # 手動実行を可能にする
   schedule:
-    - cron: '0 15 * * *'  # JST 0:00（GitHubはUTCなので、JST -9時間 = 15:00）
+    - cron: '0 15 * * *'  # JST 0:00（UTC 15:00）
+    - cron: '30 16 * * *'   # JST 12:00（UTC 3:00）
 
+  workflow_dispatch:  # 手動実行を可能にする
+  
 jobs:
   tweet:
     runs-on: ubuntu-latest
