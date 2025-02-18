@@ -25,13 +25,6 @@ JST = pytz.timezone('Asia/Tokyo')
 now = datetime.now(JST)
 date_str = now.strftime("%m月%d日").lstrip("0")  # 0埋めを削除
 
-# 特定の日付に固定のツイートをする辞書
-special_tweets = {
-    "01-01": "あけおめ月ノ美兎",
-    "09-24": "誕生日おめでとう月ノ美兎",
-    "12-25": "メリクリ月ノ美兎",
-}
-
 # ランダムツイートリスト（通常の日用）
 random_tweets = [
     "愛してるぞ月ノ美兎",
@@ -48,11 +41,7 @@ random_tweets = [
     "おもしろいぞ月ノ美兎",
 ]
 
-# 今日が特定の日なら固定ツイート、それ以外はランダム
-if month_day in special_tweets:
-    tweet_content = special_tweets[month_day] + "\n" + f"{date_str}" # 特定の日のツイート
-else:
-    tweet_content = random.choice(random_tweets) + "\n" + f"{date_str}" # ランダムツイート
+tweet_content = random.choice(random_tweets) + "\n" + f"{date_str}" # ランダムツイート
 
 # ツイートを投稿
 response = client.create_tweet(text=tweet_content)
