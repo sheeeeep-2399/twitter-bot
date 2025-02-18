@@ -22,7 +22,7 @@ jobs:
         python-version: '3.x'
 
     - name: 依存関係をインストール
-      run: pip install tweepy  # ここで tweepy をインストールする
+      run: pip install tweepy pytz  # ここで pytz も一緒にインストールする
 
     - name: Twitter に投稿
       env:
