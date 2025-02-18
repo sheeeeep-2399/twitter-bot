@@ -41,7 +41,7 @@ random_tweets = [
     "おもしろいぞ月ノ美兎",
 ]
 
-tweet_content = random.choice(random_tweets) + "\n" + f"{date_str}" # ランダムツイート
+tweet_content = random.choice(random_tweets) + "\n" + f"{date_str}" + "random.randint(1000, 9999)" # ランダムツイート
 
 # ツイートを投稿
 response = client.create_tweet(text=tweet_content)
