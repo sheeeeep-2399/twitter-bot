@@ -1,9 +1,10 @@
 import tweepy
 import os
+import random
 from datetime import datetime
 import pytz
 
-# 環境変数からAPIキーを取得
+# 環境変数から API キーを取得
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
@@ -21,13 +22,37 @@ client = tweepy.Client(
 
 # 現在時刻（JST）
 JST = pytz.timezone('Asia/Tokyo')
-now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
+now = datetime.now(JST)
+date_str = now.strftime("%Y-%m-%d")
+month_day = now.strftime("%m-%d")  # 月日だけ取得（例: "12-25"）
 
-# ツイート内容
-tweet_content = f"✅ API v2 でツイート！\n現在時刻: {now} JST"
+# 特定の日付に固定のツイートをする辞書
+special_tweets = {
+    "01-01": "あけおめ",
+    "02-18": "てすと",
+    "09-24": "誕生日おめでとう",
+    "12-25": "メリクリ",
+}
 
-# ツイートを投稿（API v2）
+# ランダムツイートリスト（通常の日用）
+random_tweets = [
+    "愛してるぞ月ノ美兎",
+    "愛してるぞ月ノ美兎",
+    "愛してるぞ月ノ美兎",
+    "愛してるぞ月ノ美兎",
+    "愛してるぞ月ノ美兎",
+    "かわいいぞ月ノ美兎",
+    "おもしろいぞ月ノ美兎",
+]
+
+# 今日が特定の日なら固定ツイート、それ以外はランダム
+if month_day in special_tweets:
+    tweet_content = special_tweets[month_day]  # 特定の日のツイート
+else:
+    tweet_content = random.choice(random_tweets)  # ランダムツイート
+
+# ツイートを投稿
 response = client.create_tweet(text=tweet_content)
 
 # 投稿成功のログを表示
-print("✅ 投稿完了:", response)
+print(f"✅ 投稿完了: {tweet_content}")
